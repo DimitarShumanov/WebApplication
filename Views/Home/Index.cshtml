@@ -2,11 +2,44 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+<div class="text-center" style="background-image: url(" C:\Users\User\Documents\dimitar12a\WebApplication2\wwwroot\images\tree.jpg")">
     <h1 class="display-4">Покана за коледно парти</h1>
     <p>
         Заповядайте на нашето коледното парти!Ще се проведе в ресторанта на хотел "Гранд хотел Пловдив" от 19 часа! 
         Моля, попълнете формата с вашите данните, както и дали ще присъствате,за да може да се направи необходимата организация 
     </p>
     <button class="col-3 btn btn-primary m-1"> <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="RspvForm">Попънете формуляра</a></button>
+    @model IEnumerable<WebApplication2.Models.Person>
+    <div class="container p-3">
+        <div class="row pt-4">
+            <div class="col-6">
+                <h2>
+                    Списък на присъстващите
+                </h2>
+            </div>
+        </div>
+        <br />
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-bordered table-striped" style="width:100%">
+                <thead>
+                <th> Име </th>
+                <th> Телефон </th>
+                <th> E-mail </th>
+                <th> Ще присъства ли </th>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Phone</td>
+                            <td>@item.Email</td>
+                            <td>@item.IsAttending</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
 </div>
